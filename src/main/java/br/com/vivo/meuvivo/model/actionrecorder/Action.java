@@ -11,7 +11,7 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Action {
 	
-	private String usedData;
+	private Double usedData;
 	
 	private String serviceType;
 	
@@ -19,10 +19,10 @@ public class Action {
 	@JsonSerialize(using = LocalDateTimeSerializer.class)  
 	private LocalDateTime date;
 	
-	public String getUsedData() {
+	public Double getUsedData() {
 		return usedData;
 	}
-	public void setUsedData(String usedData) {
+	public void setUsedData(Double usedData) {
 		this.usedData = usedData;
 	}
 	public String getServiceType() {

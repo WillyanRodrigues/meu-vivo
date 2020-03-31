@@ -13,6 +13,7 @@ public class RestControllerAdvice {
 	
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<String> handleActionRecorderExceptions(Exception ex){
+		ex.printStackTrace();
 		return ResponseEntity.status(500).body("Unexpected Error");
 	}
 

@@ -17,7 +17,7 @@ public class SaldoDTOConverter {
 		int gasto = 0;
 		for (Action action : actions) {
 			if (action.getServiceType().equalsIgnoreCase("SMS")) {
-				gasto += Integer.valueOf(action.getUsedData());
+				gasto += action.getUsedData();
 			}
 		}
 		SaldoDTO saldoDTO = new SaldoDTO();
@@ -34,7 +34,7 @@ public class SaldoDTOConverter {
 		for (Action action : actions) {
 			if (action.getServiceType().equalsIgnoreCase(TipoServico.DEVICE_APPLICATION.name())
 					|| action.getServiceType().equalsIgnoreCase(TipoServico.INTERNET_WEBPAGE.name())) {
-				gasto += Double.valueOf(action.getUsedData());
+				gasto += action.getUsedData();
 			}
 		}
 		SaldoDTO saldoDTO = new SaldoDTO();
@@ -50,7 +50,7 @@ public class SaldoDTOConverter {
 		int gasto = 0;
 		for (Action action : actions) {
 			if (action.getServiceType().equalsIgnoreCase("CALL")) {
-				gasto += Integer.valueOf(action.getUsedData());
+				gasto += action.getUsedData();
 			}
 		}
 		SaldoDTO saldoDTO = new SaldoDTO();

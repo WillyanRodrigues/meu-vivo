@@ -36,11 +36,11 @@ public class ActionRecorderService {
 	private static final HttpClient HTTP_CLIENT = new HttpClient(new MultiThreadedHttpConnectionManager());
 
 	private String getBuscarRegistrosPorAssinaturaEndpoint(Long cpf, Long assinatura) {
-		return this.endpoint + "/user/" + cpf + "/line/" + assinatura + "/actions";
+		return this.endpoint + "/user/document/" + cpf + "/line/" + assinatura + "/actions";
 	}
 
 	private String getBuscarAssinaturaEndpoint(Long cpf, Long assinatura) {
-		return this.endpoint + "/user/" + cpf + "/line/" + assinatura;
+		return this.endpoint + "/user/" + cpf + "/line?number=" + assinatura;
 	}
 
 	private String getBuscarRegistrosPorDataEndpoint(Long cpf, Long assinatura, LocalDateTime inicio,
@@ -52,6 +52,7 @@ public class ActionRecorderService {
 	public List<Action> buscarRegistrosPorAssinatura(Long cpf, Long assinatura) throws IOException {
 		GetMethod getMethod = new GetMethod(getBuscarRegistrosPorAssinaturaEndpoint(cpf, assinatura));
 		HTTP_CLIENT.executeMethod(getMethod);
+		System.out.println(getBuscarRegistrosPorAssinaturaEndpoint(cpf, assinatura));
 		if (getMethod.getStatusCode() != 200) {
 			throw new HTTPActionRecorderException(getMethod.getStatusCode(), getMethod.getResponseBodyAsString());
 		}
@@ -62,6 +63,7 @@ public class ActionRecorderService {
 	public Line buscarAssinatura(Long cpf, Long assinatura) throws IOException {
 		GetMethod getMethod = new GetMethod(getBuscarAssinaturaEndpoint(cpf, assinatura));
 		HTTP_CLIENT.executeMethod(getMethod);
+		System.out.println(getBuscarAssinaturaEndpoint(cpf, assinatura));
 		if (getMethod.getStatusCode() != 200) {
 			throw new HTTPActionRecorderException(getMethod.getStatusCode(), getMethod.getResponseBodyAsString());
 		}
@@ -71,6 +73,7 @@ public class ActionRecorderService {
 	public List<Action> buscarRegistrosPorData(Long cpf, Long assinatura, LocalDateTime inicio, LocalDateTime fim)
 			throws IOException {
 		GetMethod getMethod = new GetMethod(getBuscarRegistrosPorDataEndpoint(cpf, assinatura, inicio, fim));
+		System.out.println(getBuscarRegistrosPorDataEndpoint(cpf, assinatura, inicio, fim));
 		HTTP_CLIENT.executeMethod(getMethod);
 		if (getMethod.getStatusCode() != 200) {
 			throw new HTTPActionRecorderException(getMethod.getStatusCode(), getMethod.getResponseBodyAsString());
