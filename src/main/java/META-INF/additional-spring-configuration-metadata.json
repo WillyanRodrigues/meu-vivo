@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "actionrecorder.endpoint",
+  "type": "java.lang.String",
+  "description": "A description for 'actionrecorder.endpoint'"
+}]}
